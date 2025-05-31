@@ -1,69 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENTRE ALAS - Alitas a Domicilio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/icono_ea_diciembre.png" type="image/x-icon">
+    <title>EntreAlas - Panel Vendedor</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9LY0V83S2D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-9LY0V83S2D');
-</script>
 <body>
-    <div id="loader" class="loader">Cargando...</div>
-    <header>
-        <img src="images/logo-entrealas-sep24-2-transparente.png" alt="Entrega a domicilio" class="logotipo" loading="lazy">
-        <p>ESPERA LO MEJOR!</p>
-    </header>
+    <div class="app-container">
+        <!-- Cabecera fija -->
+        <header class="tab-header">
+            <h1>📱 EntreAlas <span class="subtitle">Panel Vendedor</span></h1>
+            <div class="header-actions">
+                <button id="newOrderBtn" class="btn-icon">
+                    <i class="fas fa-plus"></i> Nuevo
+                </button>
+                <button id="statsBtn" class="btn-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </button>
+            </div>
+        </header>
 
-    <section id="descripcion">
-        <h2>Nuestras Alitas</h2>
-        <img src="images/alitas_zasonas.webp" alt="Alitas" class="imagen-responsiva" loading="lazy">
-        <p>En ENTRE ALAS, nuestras alitas son sazonadas y marinadas con una receta única que hemos perfeccionado para ofrecerte un sabor rico y agradable. Cada alita es preparada para que salga crujiente y con una textura en boca inigualable, especialmente nuestro producto "Estilo Brayan", que se sirve con salsa aparte para mantener la cobertura crujiente.</p>
-    </section>
+        <!-- Panel principal -->
+        <div class="tab-content-wrapper">
+            <!-- Columna izquierda: Datos del pedido -->
+            <div class="order-panel">
+                <div class="client-section">
+                    <h2><i class="fas fa-user"></i> Cliente</h2>
+                    <input type="text" id="client-name" placeholder="Nombre" class="compact-input">
+                    <input type="tel" id="client-phone" placeholder="Teléfono" class="compact-input">
+                </div>
 
-    <section id="proceso">
-        <h2>¿Cómo Funciona?</h2>
-        <img src="images/pedido.webp" alt="Proceso de pedido" class="imagen-responsiva" loading="lazy">
-        <ol>
-            <li>Realiza tu pedido a través de WhatsApp.</li>
-            <li>Selecciona tus alitas y salsas del catálogo.</li>
-            <li>Proporciona tu nombre y dirección de entrega.</li>
-            <li>Recibe tus alitas frescas y deliciosas en la puerta de tu casa.</li>
-        </ol>
-    </section>
+                <div class="products-section">
+                    <h2><i class="fas fa-utensils"></i> Productos</h2>
+                    <div class="product-tabs">
+                        <button class="tab-btn active" data-tab="alitas">Alitas</button>
+                        <button class="tab-btn" data-tab="boneless">Boneless</button>
+                        <button class="tab-btn" data-tab="papas">Papas fritas</button>
+                        <button class="tab-btn" data-tab="bebidas">Bebidas</button>
+                        <button class="tab-btn" data-tab="especiales">Pedidos Especiales</button>
+                    </div>
 
-    <section id="entrega">
-        <h2>Entrega a Domicilio</h2>
-        <img src="images/domicilio.webp" alt="Entrega a domicilio" class="imagen-responsiva" loading="lazy">
-        <p>Todos nuestros pedidos son entregados a domicilio sin costo adicional. Si prefieres, puedes recoger tu pedido en la Farmacia GARY del ejido 20 de Abril.</p>
-    </section>
+                    <!-- Contenido de pestañas -->
+                    <div id="alitas" class="tab-content active">
+                        <!-- Contenido dinámico de productos -->
+                    </div>
+                    <div id="boneless" class="tab-content">
+                        <!-- Contenido dinámico de boneless -->
+                    </div>
+                    <div id="papas" class="tab-content">
+                        <!-- Contenido dinámico de papas -->
+                    </div>
+                    <div id="bebidas" class="tab-content">
+                        <!-- Contenido dinámico de bebidas -->
+                    </div>
+                    <div id="especiales" class="tab-content">
+                        <div class="special-order-container">
+                            <div class="special-order-controls">
+                                <select id="sauce-select" class="compact-input">
+                                    <option value="">Selecciona salsa</option>
+                                    <option value="bbq">BBQ</option>
+                                    <option value="buffalo">Buffalo</option>
+                                    <option value="parmesano">Parmesano</option>
+                                    <option value="mango-habanero">Mango Habanero</option>
+                                    <option value="limon-pimienta">Limón Pimienta</option>
+                                </select>
+                                
+                                <div class="qty-control">
+                                    <button class="qty-btn minus" data-action="decrease">-</button>
+                                    <span class="qty">0</span>
+                                    <button class="qty-btn plus" data-action="increase">+</button>
+                                </div>
+                                
+                                <button id="add-special-item" class="btn-primary small">
+                                    <i class="fas fa-plus"></i> Agregar
+                                </button>
+                            </div>
+                            
+                            <div id="special-items-list" class="special-items-list">
+                                <!-- Aquí se mostrarán los items especiales agregados -->
+                            </div>
+                            
+                            <div class="special-order-summary">
+                                <span>Total especial:</span>
+                                <span id="special-order-total">$0.00</span>
+                            </div>
+                            
+                            <button id="add-to-cart" class="btn-success">
+                                <i class="fas fa-cart-plus"></i> Agregar al pedido
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <section id="calidad">
-        <h2>Calidad y Seguridad</h2>
-        <img src="images/sanidad.jpeg" alt="Calidad" class="imagen-responsiva" loading="lazy">
-        <p>Nos tomamos muy en serio la calidad de nuestros productos. Sanitizamos todos los espacios utilizados para la preparación de los pedidos y garantizamos que nuestro personal mantenga una buena higiene. Nuestras alitas son almacenadas de manera segura y no pasan más de cuatro días en refrigeración para asegurar su frescura.</p>
-    </section>
+            <!-- Columna derecha: Resumen -->
+            <div class="summary-panel">
+                <div class="summary-header">
+                    <h2><i class="fas fa-receipt"></i> Resumen</h2>
+                    <div class="collapsed-summary">
+                        <span id="collapsed-item-count">0 producto(s)</span>
+                        <span id="collapsed-total">$0.00</span>
+                    </div>
+                    <button id="toggleSummary" class="btn-icon">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+                <div id="summaryContent" class="summary-content expanded">
+                    <div id="summary-items" class="summary-items">
+                        <!-- Aquí se cargarán los items dinámicamente -->
+                    </div>
+                    <div class="total-section">
+                        <span>Total:</span>
+                        <span id="order-total">$0.00</span>
+                    </div>
+                </div>
 
-    <section id="contacto">
-        <h2>Contáctanos</h2>
-        <p>Para realizar tu pedido, envíanos un mensaje a través de WhatsApp. También puedes seguirnos en Facebook para estar al tanto de nuestras novedades.</p>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/+529631834700" class="boton-whatsapp"> ¡Pide Ahora por WhatsApp!</a></p>
-        <br>
-        <p><strong>Facebook:</strong> <a href="https://www.facebook.com/profile.php?id=100087646261018" class="boton-facebook"> siguenos en Facebook</a></p>
-    </section>
+                <div class="action-buttons">
+                    <button id="saveOrderBtn" class="btn-primary">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button id="whatsappBtn" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2022 ENTRE ALAS. Todos los derechos reservados.</p>
-    </footer>
+        <!-- Notas fijas -->
+        <div class="notes-section">
+            <textarea id="order-notes" placeholder="Notas internas..."></textarea>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
