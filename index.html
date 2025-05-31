@@ -16,6 +16,9 @@
         <header class="tab-header">
             <h1>📱 EntreAlas <span class="subtitle">Panel Vendedor</span></h1>
             <div class="header-actions">
+                <button id="themeToggle" class="btn-icon" title="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <button id="newOrderBtn" class="btn-icon">
                     <i class="fas fa-plus"></i> Nuevo
                 </button>
@@ -69,27 +72,27 @@
                                     <option value="mango-habanero">Mango Habanero</option>
                                     <option value="limon-pimienta">Limón Pimienta</option>
                                 </select>
-                                
+
                                 <div class="qty-control">
                                     <button class="qty-btn minus" data-action="decrease">-</button>
                                     <span class="qty">0</span>
                                     <button class="qty-btn plus" data-action="increase">+</button>
                                 </div>
-                                
+
                                 <button id="add-special-item" class="btn-primary small">
                                     <i class="fas fa-plus"></i> Agregar
                                 </button>
                             </div>
-                            
+
                             <div id="special-items-list" class="special-items-list">
                                 <!-- Aquí se mostrarán los items especiales agregados -->
                             </div>
-                            
+
                             <div class="special-order-summary">
                                 <span>Total especial:</span>
                                 <span id="special-order-total">$0.00</span>
                             </div>
-                            
+
                             <button id="add-to-cart" class="btn-success">
                                 <i class="fas fa-cart-plus"></i> Agregar al pedido
                             </button>
@@ -137,7 +140,7 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
